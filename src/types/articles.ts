@@ -9,3 +9,7 @@ export interface article {
   descuento: number,
   imagen: string
 }
+
+export interface cartArticle extends article {
+  amount: number
+}

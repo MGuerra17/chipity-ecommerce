@@ -1,17 +1,14 @@
 import { FilterControl } from "@/types/filterSideBarControls";
 import FilterCheckBox from "./FilterCheckBox";
 import { useState } from "react";
+import { formatterCOP } from "@/utils/cop-formatter";
 
 export default function FilterSideBar({
   show,
   setShow,
 }: FilterControl): JSX.Element {
   const [rvalue, setRvalue] = useState("20000");
-  const formatterCOP = new Intl.NumberFormat("es-CO", {
-    style: "currency",
-    currency: "COP",
-    minimumFractionDigits: 0,
-  });
+  
   return (
     <>
       <div
