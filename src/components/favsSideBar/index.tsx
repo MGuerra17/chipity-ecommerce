@@ -1,11 +1,12 @@
+import { useArticleContext } from "@/contexts/articlesContext";
 import { sideBarControlProps } from "@/types/sideBarControls";
-import FilterCheckBox from "./FilterCheckBox";
+import FavItem from "./favItem";
 
-export default function FilterSideBar({
+export default function FavsSideBar({
   show,
   setShow,
 }: sideBarControlProps): JSX.Element {
-
+  const { state } = useArticleContext();
   return (
     <>
       <div
@@ -18,7 +19,7 @@ export default function FilterSideBar({
         onKeyDown={setShow}
       ></div>
       <div
-        className={`fixed h-screen transition-transform duration-500 w-64 bg-white z-50 top-0 right-0 pt-12 px-6 ${
+        className={`fixed h-screen transition-transform duration-500 w-64 bg-white z-50 top-0 right-0 pt-12 px-3 ${
           !show && "translate-x-full"
         }`}
       >
@@ -41,16 +42,12 @@ export default function FilterSideBar({
             </g>
           </svg>
         </button>
-        <h3 className="text-lg font-bold">Filtrar</h3>
+        <h3 className="text-lg font-bold">Favoritos</h3>
         <div className="flex flex-col pt-5">
-          <h4 className="text-lg font-bold text-neutral-500 mb-3">
-            Categorias
-          </h4>
-          <FilterCheckBox title="Anillos" />
-          <FilterCheckBox title="Argollas" />
-          <FilterCheckBox title="Collares" />
-          <FilterCheckBox title="Joyeros" />
-          <FilterCheckBox title="Combos" />
+          <h4 className="text-lg text-neutral-500 mb-3">{state.favs.length} articulos</h4>
+          <ul>
+            {state.favs.map(article => <FavItem key={article.id} data={article} /> )}
+          </ul>
         </div>
       </div>
     </>

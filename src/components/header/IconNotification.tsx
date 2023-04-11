@@ -4,12 +4,12 @@ interface NotificationProps {
   title: string,
   icon: string,
   notificationsAmount: number,
-  href: string
+  clickHandler(): void
 }
 
-export default function IconNotification({title,icon,notificationsAmount,href}:NotificationProps): JSX.Element {
+export default function IconNotification({title,icon,notificationsAmount,clickHandler}:NotificationProps): JSX.Element {
   return (
-    <a href={href} className="relative">
+    <button className="relative" onClick={clickHandler}>
       <Image
         src={icon}
         alt={`${title} icon`}
@@ -22,6 +22,6 @@ export default function IconNotification({title,icon,notificationsAmount,href}:N
           {notificationsAmount}
         </span>
       }
-    </a>
+    </button>
   );
 }

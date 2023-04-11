@@ -71,7 +71,7 @@ export default function Home({articles}: InferGetStaticPropsType<typeof getStati
   const [showFilterMenu, setShowFilterMenu] = useState<boolean>(false);
   const [search, setSearch] = useState<string>('')
   const {state} = useArticleContext()
-  console.log(state.cart)
+
   const handleUpdateSearch = (e:ChangeEvent<HTMLInputElement>): void => {
     setSearch(e.target.value)
   }

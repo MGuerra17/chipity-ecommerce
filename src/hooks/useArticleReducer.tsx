@@ -12,6 +12,7 @@ export interface globalArticleStateProps {
   updateCart(newCartList:article[]):void;
   addToCart(cartItem:article):void;
   removeFromCart(cartItem:article):void;
+  decreaseCartAmount(cartItem:article):void;
   clearCart():void;
   updateFavs(newFavsList:article[]):void;
   addToFavs(favItem:article):void;
@@ -64,6 +65,11 @@ export default function useArticleReducer ():globalArticleStateProps {
     payload: cartItem
   })
 
+  const decreaseCartAmount = (cartItem:article):void => dispatch({
+    type: ARTICLE_ACTION_TYPES.DECREASE_CART_AMOUNT,
+    payload: cartItem
+  })
+
   const clearCart = ():void => dispatch({
     type: ARTICLE_ACTION_TYPES.CLEAR_CART,
     payload: undefined
@@ -99,6 +105,7 @@ export default function useArticleReducer ():globalArticleStateProps {
     updateCart,
     addToCart,
     removeFromCart,
+    decreaseCartAmount,
     clearCart,
     updateFavs,
     addToFavs,

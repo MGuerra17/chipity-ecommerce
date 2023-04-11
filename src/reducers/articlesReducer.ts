@@ -14,6 +14,7 @@ export const ARTICLE_ACTION_TYPES = {
   UPDATE_CART: 'UPDATE_CART',
   ADD_TO_CART: 'ADD_TO_CART',
   REMOVE_FROM_CART: 'REMOVE_FROM_CART',
+  DECREASE_CART_AMOUNT: 'DECREASE_CART_AMOUNT',
   CLEAR_CART: 'CLEAR_CART',
   UPDATE_FAVS: 'UPDATE_FAVS',
   ADD_TO_FAVS: 'ADD_TO_FAVS',
@@ -50,6 +51,18 @@ export const articlesReducer = (currentState:globalArticleStateProps,action:arti
       const newCartList:cartArticle[] = currentState.state.cart.filter(article => article.id !== (payload as cartArticle).id)
       window.localStorage.setItem('cart',JSON.stringify(newCartList))
       return {...currentState, state: {...currentState.state, cart: newCartList}}
+    }
+    case ARTICLE_ACTION_TYPES.DECREASE_CART_AMOUNT: {
+      const newCartList:cartArticle[] = [...currentState.state.cart]
+      const {id} = payload as article
+      const articleIndex = newCartList.findIndex(article => article.id === id)
+      if(articleIndex === -1) { 
+        return currentState
+      } else {
+        newCartList[articleIndex] = {...newCartList[articleIndex], amount:newCartList[articleIndex].amount - 1 }
+        window.localStorage.setItem('cart',JSON.stringify(newCartList))
+        return {...currentState, state: {...currentState.state, cart: newCartList}}
+      }
     }
     case ARTICLE_ACTION_TYPES.CLEAR_CART:
       return {...currentState, state: {...currentState.state, cart: []}}

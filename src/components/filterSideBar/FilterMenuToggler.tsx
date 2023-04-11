@@ -1,9 +1,9 @@
 import { useArticleContext } from "@/contexts/articlesContext";
-import { FilterControl } from "@/types/filterSideBarControls";
+import { sideBarControlProps } from "@/types/sideBarControls";
 
 export default function FilterMenuToggler({
   setShow,
-}: FilterControl): JSX.Element {
+}: sideBarControlProps): JSX.Element {
   const {state} = useArticleContext()
   return (
     <button onClick={setShow} className="flex items-center rounded-sm px-3 py-1 relative">
