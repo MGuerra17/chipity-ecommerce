@@ -10,5 +10,6 @@ export const getArticles = async ():Promise<article[]> => {
       complete: (result) => resolve(result.data),
       error:reject})
   })
+  console.log(parsed)
   return parsed
 }

@@ -1,12 +1,29 @@
+import { useArticleContext } from "@/contexts/articlesContext";
+import { article } from "@/types/articles";
+
 export interface IAddToCartProps {
   active: boolean;
+  data: article;
 }
 
 export default function AddToCartButton({
   active,
+  data
 }: IAddToCartProps): JSX.Element {
+  const {addToCart, removeFromCart} = useArticleContext()
+  const handleAddToCart = ():void => {
+    console
+    addToCart(data)
+  }
+
+  const handleRemoveFromCart = ():void => {
+    removeFromCart(data)
+  }
   return (
-    <button className={`border ${active ? 'border-black text-black' : 'border-neutral-500 text-neutral-500'} hover:border-black hover:text-black rounded-full aspect-square md:aspect-auto md:rounded-lg p-2 md:px-2 flex gap-x-1 py-0.5 items-center relative`}>
+    <button 
+      className={`border ${active ? 'border-black text-black' : 'border-neutral-500 text-neutral-500'} hover:border-black hover:text-black rounded-full aspect-square md:aspect-auto md:rounded-lg p-2 md:px-2 flex gap-x-1 py-0.5 items-center relative`}
+      onClick={active ? handleRemoveFromCart : handleAddToCart }
+      >
       <span className="absolute -top-0.5 right-1.5 font-bold md:hidden inline-block">
         +
       </span>

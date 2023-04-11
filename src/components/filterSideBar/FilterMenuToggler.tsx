@@ -1,10 +1,19 @@
+import { useArticleContext } from "@/contexts/articlesContext";
 import { FilterControl } from "@/types/filterSideBarControls";
 
 export default function FilterMenuToggler({
   setShow,
 }: FilterControl): JSX.Element {
+  const {state} = useArticleContext()
   return (
-    <button onClick={setShow} className="flex items-center rounded-sm px-3 py-1">
+    <button onClick={setShow} className="flex items-center rounded-sm px-3 py-1 relative">
+      {
+        state.filters.length > 0 && (
+          <span className="w-4 rounded-full text-xs text-white bg-primary aspect-square flex items-center justify-center">
+            {state.filters.length}
+          </span>
+        )
+      }
       <svg
         className="w-6 h-6 mr-1"
         viewBox="0 0 24 24"

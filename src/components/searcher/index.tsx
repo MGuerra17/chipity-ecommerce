@@ -1,4 +1,11 @@
-export default function Searcher(): JSX.Element {
+import { ChangeEvent } from "react";
+
+interface searcherProps {
+  search: string
+  updateSearch(e:ChangeEvent<HTMLInputElement>): void
+}
+
+export default function Searcher({search,updateSearch}: searcherProps): JSX.Element {
   return (
     <div className="w-full h-14 relative">
       <div className="w-full h-1/2 bg-secondary" />
@@ -10,6 +17,8 @@ export default function Searcher(): JSX.Element {
         <input
           type="text"
           className="focus:outline-none w-full h-full pl-10"
+          value={search}
+          onChange={updateSearch}
         />
       </div>
     </div>

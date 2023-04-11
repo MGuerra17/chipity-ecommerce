@@ -1,14 +1,11 @@
 import { FilterControl } from "@/types/filterSideBarControls";
 import FilterCheckBox from "./FilterCheckBox";
-import { useState } from "react";
-import { formatterCOP } from "@/utils/cop-formatter";
 
 export default function FilterSideBar({
   show,
   setShow,
 }: FilterControl): JSX.Element {
-  const [rvalue, setRvalue] = useState("20000");
-  
+
   return (
     <>
       <div
@@ -54,28 +51,11 @@ export default function FilterSideBar({
           <h4 className="text-lg font-bold text-neutral-500 mb-3">
             Categorias
           </h4>
-          <FilterCheckBox title="Descuentos" />
-          <FilterCheckBox title="Nuevo" />
           <FilterCheckBox title="Anillos" />
           <FilterCheckBox title="Argollas" />
           <FilterCheckBox title="Collares" />
           <FilterCheckBox title="Joyeros" />
           <FilterCheckBox title="Combos" />
-          <h4 className="text-lg font-bold text-neutral-500 mb-3">
-            Precio
-          </h4>
-          <input
-            className="appearance-none bg-neutral-500 rounded-lg h-1 accent-primary"
-            type="range"
-            min={8000}
-            max={100000}
-            step={1000}
-            value={rvalue}
-            onChange={(e) => setRvalue(e.target.value)}
-          />
-          <span className="font-bold mt-4">
-            Max: {formatterCOP.format(Number(rvalue))}
-          </span>
         </div>
       </div>
     </>

@@ -35,14 +35,20 @@ export const articlesReducer = (currentState:globalArticleStateProps,action:arti
     case ARTICLE_ACTION_TYPES.UPDATE_CART:
       return {...currentState, state: {...currentState.state, cart: (payload as cartArticle[])}}
     case ARTICLE_ACTION_TYPES.ADD_TO_CART: {
-      const newCartList:cartArticle[] = [...currentState.state.cart, payload as cartArticle]
-      // const articleIndex = newFavsList.findIndex(article => article.id === id)
-      // articleIndex !== -1 ? newFavsList[articleIndex] = {...newFavsList[articleIndex], amount:newFavsList[articleIndex].a } : newFavsList.push(payload as article)
-
+      const newCartList:cartArticle[] = [...currentState.state.cart]
+      const {id} = payload as article
+      const articleIndex = newCartList.findIndex(article => article.id === id)
+      if(articleIndex === -1) { 
+        newCartList.push({...payload as article,amount:1} as cartArticle)
+      } else {
+        newCartList[articleIndex] = {...newCartList[articleIndex], amount:newCartList[articleIndex].amount + 1 }
+      }
+      window.localStorage.setItem('cart',JSON.stringify(newCartList))
       return {...currentState, state: {...currentState.state, cart: newCartList}}
     }
     case ARTICLE_ACTION_TYPES.REMOVE_FROM_CART: {
       const newCartList:cartArticle[] = currentState.state.cart.filter(article => article.id !== (payload as cartArticle).id)
+      window.localStorage.setItem('cart',JSON.stringify(newCartList))
       return {...currentState, state: {...currentState.state, cart: newCartList}}
     }
     case ARTICLE_ACTION_TYPES.CLEAR_CART:
@@ -50,13 +56,16 @@ export const articlesReducer = (currentState:globalArticleStateProps,action:arti
     case ARTICLE_ACTION_TYPES.UPDATE_FAVS:
       return {...currentState, state: {...currentState.state, favs: (payload as article[])}}
     case ARTICLE_ACTION_TYPES.ADD_TO_FAVS: {
-      const favsList:article[] = [...currentState.state.favs]
+      const newFavsList:article[] = [...currentState.state.favs]
       const {id} = payload as article
-      const article = favsList.find(article => article.id === id)
-    return article ? currentState : {...currentState, state: {...currentState.state, favs: [...favsList, payload as article]}}
+      const isInFavs = newFavsList.find(article => article.id === id)
+      if(!isInFavs) newFavsList.push(payload as article)
+      window.localStorage.setItem('favs',JSON.stringify(newFavsList))
+      return isInFavs ? currentState : {...currentState, state: {...currentState.state, favs: newFavsList}}
     }
     case ARTICLE_ACTION_TYPES.REMOVE_FROM_FAVS: {
       const newFavsList:article[] = currentState.state.favs.filter(article => article.id !== (payload as article).id)
+      window.localStorage.setItem('favs',JSON.stringify(newFavsList))
     return {...currentState, state: {...currentState.state, favs: newFavsList}}
     }
     case ARTICLE_ACTION_TYPES.UPDATE_LOADING_STATE:

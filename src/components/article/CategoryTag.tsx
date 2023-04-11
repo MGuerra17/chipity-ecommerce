@@ -15,7 +15,7 @@ const CATEGORIES_COLORS:ColorsOptions = {
 export default function CategoryTag ({title}: CategoryTagProps):JSX.Element {
   const color = CATEGORIES_COLORS[title] || 'text-emerald-600' 
   return (
-    <div className={`${color} px-2 rounded-full text-xs`}>
+    <div className={`${color} py-0.5 px-2 rounded-full text-xs`}>
       {title.charAt(0).toUpperCase() + title.slice(1)}
     </div>
   );

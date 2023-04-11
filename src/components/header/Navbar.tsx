@@ -1,6 +1,8 @@
 import Image from "next/image"
 import IconNotification from "./IconNotification"
+import { useArticleContext } from "@/contexts/articlesContext"
 export default function Navbar():JSX.Element {
+  const {state} = useArticleContext()
   return (
     <nav className="bg-white border-gray-200 px-4 md:px-8 py-3">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-2xl h-11">
@@ -11,13 +13,13 @@ export default function Navbar():JSX.Element {
                 <IconNotification 
                 title="Favorites" 
                 icon="https://icongr.am/fontawesome/heart-o.svg?size=30&color=currentColor" 
-                notificationsAmount={5} 
+                notificationsAmount={state.favs.length} 
                 href="#" 
                 />
                 <IconNotification 
                 title="Shopping bag" 
                 icon="https://icongr.am/fontawesome/shopping-bag.svg?size=30&color=currentColor" 
-                notificationsAmount={3} 
+                notificationsAmount={state.cart.length} 
                 href="#" 
                 />
                 <button data-collapse-toggle="mobile-menu-2" type="button" className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="mobile-menu-2" aria-expanded="false">
@@ -37,12 +39,10 @@ export default function Navbar():JSX.Element {
                     <li>
                         <a href="/tips" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">Tips</a>
                     </li>
-                    <li>
-                        <a href="/about" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">Quienes somos</a>
-                    </li>
                 </ul>
             </div>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js" />
     </nav>
 )
 }

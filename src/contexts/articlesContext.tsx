@@ -8,7 +8,7 @@ export interface articlesInfo {
   filters: string[];
   cart: cartArticle[];
   favs: article[];
-  loading: boolean  
+  loading: boolean;
 } 
 
 interface articleProviderProps {
