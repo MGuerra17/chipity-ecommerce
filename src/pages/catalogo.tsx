@@ -8,18 +8,20 @@ import { useArticleContext } from "@/contexts/articlesContext";
 import { article, cartArticle } from "@/types/articles";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { getArticles } from "@/services/articles";
+import ItemModal from "@/components/itemModal";
 
 const articlesTest:article[] = [
   {
     id: 1,
-    titulo: 'Anillo diamante',
-    descripcion: 'Hermoso anillo con forma de alma, decorado con diamante',
-    categoria: 'Anillos',
-    subcategoria1: 'combo',
+    titulo: 'Collar medalla griega',
+    descripcion: 'Collar con moneda griega antigua de dos caras, y 3 bolitas abajo de la moneda. Viene con una cadena ancha de 3-4mm apróx, o cadena trenzada delgada. Greek Medallion.',
+    categoria: 'Collares',
+    subcategoria1: '',
     subcategoria2: '',
     precio: 30000,
     descuento: 0,
-    imagen: 'https://res.cloudinary.com/dtp9alejv/image/upload/v1680066797/zcquqlmwycwxddaabd2o.png'
+    imagen: 'https://anikjewelry.co/wp-content/uploads/2021/07/DSC_0192-1-scaled.jpeg?v=42983b05e2f2',
+    recomendaciones: ''
   },
   {
     id: 2,
@@ -30,46 +32,51 @@ const articlesTest:article[] = [
     subcategoria2: 'combo',
     precio: 63000,
     descuento: 10,
-    imagen: 'https://res.cloudinary.com/dtp9alejv/image/upload/v1679120254/rqtncdgjdstpdrd0nzm1.png'
+    imagen: 'https://anikjewelry.co/wp-content/uploads/2021/11/Anillo-infinity-diamantes-mini-anik_jewelry-scaled.jpeg?v=42983b05e2f2',
+    recomendaciones: 'Comprar limpiador,Aplicar los mejores productos'
   },
   {
     id: 3,
-    titulo: 'Anillo diamante 2',
-    descripcion: 'Hermoso anillo con forma de alma, decorado con diamante',
+    titulo: 'Anillo alma diamante',
+    descripcion: 'El Anillo ALMA nació de una historia de amor. Creamos una joya que simbolizara la libertad y el amor de una pareja, donde vemos plasmado esa unión del compromiso como algo simbólico en los tres aros entrelazados. Los 3 aros entrelazados representan el amor, la esperanza y la eternidad.',
     categoria: 'Anillos',
     subcategoria1: '',
-    subcategoria2: 'nuevo',
+    subcategoria2: '',
     precio: 40000,
     descuento: 0,
-    imagen: 'https://res.cloudinary.com/dtp9alejv/image/upload/v1680066797/zcquqlmwycwxddaabd2o.png'
+    imagen: 'https://anikjewelry.co/wp-content/uploads/2021/06/Anillo-Alma-Diamante-Dorado_Anik-Jewelry-1-scaled.jpeg?v=42983b05e2f2',
+    recomendaciones: ''
   },
   {
     id: 4,
-    titulo: 'Collar de zafiro2',
-    descripcion: 'Dale vida a tu ropa con este collar',
-    categoria: 'Collares',
-    subcategoria1: 'descuento',
-    subcategoria2: 'combo',
+    titulo: 'Argolla matrimonio 3mm',
+    descripcion: 'Argolla de 3mm para hombre o mujer hecha en oro 18K, incluye grabado por dentro.',
+    categoria: 'Argollas',
+    subcategoria1: 'nuevo',
+    subcategoria2: 'descuento',
     precio: 23000,
     descuento: 5,
-    imagen: 'https://res.cloudinary.com/dtp9alejv/image/upload/v1679120254/rqtncdgjdstpdrd0nzm1.png'
+    imagen: 'https://anikjewelry.co/wp-content/uploads/2021/10/DSC_0245-1-scaled.jpeg?v=42983b05e2f2',
+    recomendaciones: 'No guardar en lugar humedo,Ideal para ocasiones especiales'
   },
   {
     id: 5,
-    titulo: 'Anillo diamante 23',
-    descripcion: 'Hermoso anillo con forma de alma, decorado con diamante',
+    titulo: 'Candonga diamantes mini',
+    descripcion: 'Candonga en Oro Blanco 18K con diamantes alrededor de toda la candonga. Ancho de la candonga de 1,2mm – 1,5mm.',
     categoria: 'Anillos',
-    subcategoria1: '',
-    subcategoria2: 'nuevo',
+    subcategoria1: 'nuevo',
+    subcategoria2: 'tendencia',
     precio: 7000,
     descuento: 0,
-    imagen: 'https://res.cloudinary.com/dtp9alejv/image/upload/v1680066797/zcquqlmwycwxddaabd2o.png'
+    imagen: 'https://anikjewelry.co/wp-content/uploads/2022/07/DSC_0519-2-scaled.jpeg?v=42983b05e2f2',
+    recomendaciones: ''
   }
 ]
 
 export default function Home({articles}: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   const [showFilterMenu, setShowFilterMenu] = useState<boolean>(false);
   const [search, setSearch] = useState<string>('')
+  const [currentArticle, setCurrentArticle] = useState<article|null>(null);
   const {state} = useArticleContext()
 
   const handleUpdateSearch = (e:ChangeEvent<HTMLInputElement>): void => {
@@ -128,13 +135,16 @@ export default function Home({articles}: InferGetStaticPropsType<typeof getStati
                 isInFavs={favsIndex !== -1} 
                 categorie1={article.subcategoria1} 
                 categorie2={article.subcategoria2} 
+                articleSetter={setCurrentArticle}
                 data={article}
-                />
+              />
                 
             )
           })
         }
+      <ItemModal article={currentArticle as article} />
       </div>
+
     </>
   );
 }

@@ -7,7 +7,8 @@ export interface article {
   subcategoria2: string,
   precio: number,
   descuento: number,
-  imagen: string
+  imagen: string,
+  recomendaciones: string
 }
 
 export interface cartArticle extends article {

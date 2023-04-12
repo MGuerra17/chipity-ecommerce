@@ -17,12 +17,11 @@ export default function Home(): JSX.Element {
         </div>
       </div>
       <div className="w-full md:w-1/2 md:h-full flex items-center justify-center flex-col gap-y-8 mt-14 md:mt-0">
-        <h1 className="text-4xl md:text-7xl font-black px-10 md:px0 text-slate-950 max-w-xl text-center md:text-left">
-          Lorem ipsum dolor sit <span className="text-primary">amet</span>.
+        <h1 className="text-4xl md:text-7xl font-black px-10 md:px-0 text-slate-950 max-w-lg text-center md:text-left md:self-start">
+        ¡Welcome to the best ring <span className="text-primary">party</span>!
         </h1>
-        <p className="text-sm text-center md:text-left md:text-lg max-w-lg px-10 md:px-0 ">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt
-          nobis inventore quis tempora.
+        <p className="text-sm text-center md:text-left md:text-lg max-w-lg px-10 md:px-0 md:self-start">
+        Joyas en acero rodinado. Tagg us <a href="#" target="_blank" className="underline decoration-primary underline-offset-4 font-bold">@chypity</a>
         </p>
         <div className="flex gap-x-4">
           <a

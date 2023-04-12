@@ -33,6 +33,7 @@ export const initialGlobalArticleState:globalArticleStateProps = {
   updateCart: () => {return undefined},
   addToCart: () => {return undefined},
   removeFromCart: () => {return undefined},
+  decreaseCartAmount: () => {return undefined},
   clearCart: () => {return undefined},
   updateFavs: () => {return undefined},
   addToFavs: () => {return undefined},

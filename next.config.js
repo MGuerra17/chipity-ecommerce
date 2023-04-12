@@ -5,7 +5,8 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     domains: [
       'res.cloudinary.com',
-      'icongr.am'
+      'icongr.am',
+      'anikjewelry.co'
     ]
   }
 }
