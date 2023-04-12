@@ -23,7 +23,7 @@ export default function Navbar():JSX.Element {
     <nav className="bg-white border-gray-200 px-4 md:px-8 py-3">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-2xl h-11">
             <a href="/" className="flex items-center">
-                <Image src="/chipity-logo.svg" width={100} height={43} alt="Chipity Logo" />
+                <Image src="/chipity-logo.svg" width={100} height={26} alt="Chipity Logo" />
             </a>
             <div className="flex items-center lg:order-2 gap-x-4">
                 <IconNotification 

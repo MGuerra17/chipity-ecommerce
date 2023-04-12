@@ -6,8 +6,8 @@ import ItemsController from "@/components/itemsController";
 import Searcher from "@/components/searcher";
 import { useArticleContext } from "@/contexts/articlesContext";
 import { article, cartArticle } from "@/types/articles";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
-import { getArticles } from "@/services/articles";
+// import { GetStaticProps, InferGetStaticPropsType } from "next";
+// import { getArticles } from "@/services/articles";
 import ItemModal from "@/components/itemModal";
 
 const articlesTest:article[] = [
@@ -29,7 +29,7 @@ const articlesTest:article[] = [
     descripcion: 'Dale vida a tu ropa con este collar',
     categoria: 'Collares',
     subcategoria1: 'descuento',
-    subcategoria2: 'combo',
+    subcategoria2: '',
     precio: 63000,
     descuento: 10,
     imagen: 'https://anikjewelry.co/wp-content/uploads/2021/11/Anillo-infinity-diamantes-mini-anik_jewelry-scaled.jpeg?v=42983b05e2f2',
@@ -73,7 +73,7 @@ const articlesTest:article[] = [
   }
 ]
 
-export default function Home({articles}: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+export default function Home(): JSX.Element {
   const [showFilterMenu, setShowFilterMenu] = useState<boolean>(false);
   const [search, setSearch] = useState<string>('')
   const [currentArticle, setCurrentArticle] = useState<article|null>(null);
